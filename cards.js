@@ -1,10 +1,9 @@
-export class card {
+class card {
     constructor(name, value) {
         this.name = name,
         this.value = value;
     }
 }
-
 
 //instantiate each of the four suits of the English deck with their respective 12 cards
 
@@ -77,4 +76,4 @@ function createDeck(){
 
 console.log(createDeck());
 
-export{deck};
+module.exports.createDeck = createDeck();
