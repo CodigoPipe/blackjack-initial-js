@@ -61,7 +61,20 @@ const KS = new card("K♠",10);
 const AS = new card("A♠",[1,11]);
 
 //array deck created to alocate the cards
-let deck = [D2,D3,D4,D5,D6,D7,D8,D9,JD,QD,KD,AD,C2,C3,C4,C5,C6,C7,C8,C9,JC,QC,KC,AC,
-    S2,S3,S4,S5,S6,S7,S8,S9,JS,QS,KS,AS,H2,H3,H4,H5,H6,H7,H8,H9,JH,QH,KH,AH];
+
+
+    //this function sorts the deck randomly to start a new game
+function createDeck(){
+
+    let newdeck = [D2,D3,D4,D5,D6,D7,D8,D9,JD,QD,KD,AD,C2,C3,C4,C5,C6,C7,C8,C9,JC,QC,KC,AC,
+                S2,S3,S4,S5,S6,S7,S8,S9,JS,QS,KS,AS,H2,H3,H4,H5,H6,H7,H8,H9,JH,QH,KH,AH];
+
+    newdeck.sort(()=> Math.random() - 0.5);
+    
+    return newdeck;
+}
+
+
+console.log(createDeck());
 
 export{deck};
