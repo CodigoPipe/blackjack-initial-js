@@ -155,6 +155,7 @@ function validateTotal(total, deck) {
     console.log("your new card is " + newCard.name);
     console.log("Now your total is = " + total);
   }
+  total = 22;
   return total;
 }
 
