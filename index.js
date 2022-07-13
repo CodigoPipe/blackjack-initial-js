@@ -111,11 +111,31 @@ function game(){
     let card1 = deck.pop();
     let card2 = deck.pop();
 
+    //we set the value of the aces in the first round
+    if(card1.value == [1,11]){
+        card1.value = 11
+    }
+    if(card2.value == [1,11]){
+        card2.value = 11
+    }
+
     currentTotal = card1.value + card2.value;
 
     console.log("your first card is " + card1.name);
     console.log("your second card is " + card2.name);
     console.log("your total is " + currentTotal);
+
+    //if player wins
+    if(currentTotal >= 18 && currentTotal <=21){
+      console.log("Congratulations you won")
+      player1.score = 1000;
+    }
+    console.log("");
+
+
+    let askCard = readLineSync.question("pedir carta? Si o no")
+
+
 
     
 

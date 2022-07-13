@@ -74,6 +74,5 @@ function createDeck(){
 }
 
 
-console.log(createDeck());
+console.log(AS.value);
 
-module.exports.createDeck = createDeck();
