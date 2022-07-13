@@ -1,4 +1,6 @@
 
+
+const readLineSync = require('readline-sync')
 //class card and player created
 
 class card {
@@ -82,58 +84,29 @@ function createDeck(){
 }
 
 
+function registerPlayer(){
+
+    console.log("Hi Stranger, ready for some blackjack?");
+
+    const name = readLineSync.question("what is your name")
+    console.log(name);
+    
+    const player1 = new player(name);
+    console.log("let's start")
+
+    return player1;
+}
 
 //function that initializes the game
 function game(){
 
-    console.log("Hi Stranger, ready for some blackjack?");
+    registerPlayer();
 
-   
-    const readLineSync = require('readline-sync')
+    let newGame = true;
     
-    const name = readLineSync.question("what is your name")
-    
-    console.log(name);
-
-    let player1 = new player(name);
-
-    console.log(player1.score);
-    console.log(player1.name);
-
-    console.log("let's start")
-
-    let deck = createDeck();
-    
-    //variable that will take our results in the game
-    let currentTotal = 0;
-
-    //this are the first two mandatory cards that the game give us
-    let card1 = deck.pop();
-    let card2 = deck.pop();
-
-    //we set the value of the aces in the first round
-    if(card1.value == [1,11]){
-        card1.value = 11
+    while(newGame){
+        newGame = newRound(registerPlayer())
     }
-    if(card2.value == [1,11]){
-        card2.value = 11
-    }
-
-    currentTotal = card1.value + card2.value;
-
-    console.log("your first card is " + card1.name);
-    console.log("your second card is " + card2.name);
-    console.log("your total is " + currentTotal);
-
-    //if player wins
-    if(currentTotal >= 18 && currentTotal <=21){
-      console.log("Congratulations you won")
-      player1.score = 1000;
-    }
-    console.log("");
-
-
-    let askCard = readLineSync.question("pedir carta? Si o no")
 
 
 
@@ -141,5 +114,45 @@ function game(){
 
 }
 
+function newRound(player){
+    
 
-game();
+    let newDeck = createDeck();
+
+    let currentTotal = 0;
+
+    //this are the first two mandatory cards that the game give us
+    let card1 = newDeck.pop();
+    let card2 = newDeck.pop();
+
+    //we set the value of the aces in the first round
+    // if(card1.value == [1,11]){
+    //     card1.value = 11
+    // }
+    // if(card2.value == [1,11]){
+    //     card2.value = 11
+    // }
+
+    currentTotal = card1.value + card2.value;
+
+    console.log("your first card is " + card1.name);
+    console.log("your second card is " + card2.name);
+    console.log("your total is " + currentTotal);
+
+    let continueGame = true;
+    //if player wins
+    if(currentTotal >= 18 && currentTotal <=21){
+      console.log("Congratulations you won")
+      player.score += 1000;
+      let answer = readLineSync.question("do you want to play again? yes or no");
+      answer.toLowerCase();
+      continueGame = answer == "yes" ? true : false
+    }
+    
+
+
+
+
+}
+
+
